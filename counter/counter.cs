@@ -9,43 +9,40 @@ namespace Adventure_Capitalist_Calculator.counter
     abstract class counter
     {
 
-        public double currentLevel { get; set; }
+        public double level { get; set; }
 
         public double upgradeMultiplier { get; set; }
-
         public bool globalAchievmentIncrease { get; set; }
 
-        protected double CONST_UnitCost { get; set; }
-
-        protected double CONST_Profit { get; set; }
-
-        protected double CONST_Speed { get; set; }
-
-        protected double CONST_BaseCost { get; set; }
+        protected double CalcCoefficient { get; set; }
+        protected double InitialRevenue { get; set; }
+        protected double InitialTime { get; set; }
+        protected double InitialCost { get; set; }
+        protected double InitialProductivity { get; set; }
 
         public double getUnitCost()
         {
-            return CONST_BaseCost * Math.Pow(CONST_UnitCost, (currentLevel));
+            return InitialCost * Math.Pow(CalcCoefficient, level);
         }
 
         public double getProductionSpeed()
         {
-            return CONST_Speed / (Math.Pow(2, getSpeedUpgrades())) / getGlobalAchievmentIncrease();
+            return InitialTime / (Math.Pow(2, getSpeedUpgrades())) / getGlobalAchievmentIncrease();
         }
 
         public double getMoneyGeneratedByUnis()
         {
-            return currentLevel * upgradeMultiplier * 0;
+            return level * upgradeMultiplier * 0;
         }
 
         public double getSpeedUpgrades()
         {
-            if (currentLevel < 25) return 0;
-            if (currentLevel < 50) return 1;
-            if (currentLevel < 100) return 2;
-            if (currentLevel < 200) return 3;
-            if (currentLevel < 300) return 4;
-            if (currentLevel < 399) return 5;
+            if (level < 25) return 0;
+            if (level < 50) return 1;
+            if (level < 100) return 2;
+            if (level < 200) return 3;
+            if (level < 300) return 4;
+            if (level < 400) return 5;
             return 6;
         }
 

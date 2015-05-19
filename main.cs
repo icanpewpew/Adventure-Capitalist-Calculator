@@ -38,7 +38,7 @@ namespace Adventure_Capitalist_Calculator
             LemonStand ls = new LemonStand();
             for (int i = 177; i <= 300; i++)
             {
-                ls.currentLevel = i;
+                ls.level = i;
                 listBox1.Items.Add(i + "  cost next unit: " + ls.getUnitCost().ToString("F2"));
                 listBox1.Items.Add(i + "  production Speed: " + ls.getProductionSpeed().ToString("F6"));
                 listBox1.Items.Add("==================");

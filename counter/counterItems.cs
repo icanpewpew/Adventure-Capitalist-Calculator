@@ -13,22 +13,23 @@ namespace Adventure_Capitalist_Calculator.counter
         public LemonStand()
         {
             upgradeMultiplier = 1;
-            currentLevel = 1;
-
-            CONST_Profit = 1;
-            CONST_Speed = 0.5;
-            CONST_BaseCost = 4;
-            CONST_UnitCost = 1.07;
+            level = 1;
+            
+            InitialCost = 4;
+            CalcCoefficient = 1.07;
+            InitialTime = 0.5;
+            InitialRevenue = 1;
+            InitialProductivity = 1.67;
         }
 
         new public double getUnitCost()
         {
-            return CONST_BaseCost * Math.Pow(CONST_UnitCost, (currentLevel - 1));
+            return InitialCost * Math.Pow(CalcCoefficient, (level - 1));
         }
 
         new public double getProductionSpeed()
         {
-            return (Math.Pow(CONST_Speed, getSpeedUpgrades() + 1)) / getGlobalAchievmentIncrease();
+            return (Math.Pow(InitialTime, getSpeedUpgrades() + 1)) / getGlobalAchievmentIncrease();
         }
 
     }
@@ -38,12 +39,13 @@ namespace Adventure_Capitalist_Calculator.counter
         public Newspaper()
         {
             upgradeMultiplier = 1;
-            currentLevel = 1;
+            level = 1;
 
-            CONST_Profit = 60;
-            CONST_Speed = 3;
-            CONST_BaseCost = 60;
-            CONST_UnitCost = 1.15;
+            InitialCost = 60;
+            CalcCoefficient = 1.15;
+            InitialTime = 3;
+            InitialRevenue = 60;
+            InitialProductivity = 20;
         }
     }
 
