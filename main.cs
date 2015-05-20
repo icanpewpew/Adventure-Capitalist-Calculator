@@ -35,13 +35,20 @@ namespace Adventure_Capitalist_Calculator
             //Newspaper news = new Newspaper(Convert.ToDouble(NewspaperInput.Text));
 
 
+            counter.counter.angelsCount = 9107;
+            counter.counter.angelsPercent = 2;
+
             LemonStand ls = new LemonStand();
-            for (int i = 177; i <= 300; i++)
+            Newspaper news = new Newspaper();
+            for (int i = 200; i <= 300; i++)
             {
-                ls.level = i;
-                listBox1.Items.Add(i + "  cost next unit: " + ls.getUnitCost().ToString("F2"));
+                news.level = i;
+                listBox1.Items.Add(i + "   getRevenueIncreaseWithNextLevel: " + news.getRevenueIncreaseWithNextLevel().ToString("F2"));
+
+
+                /*listBox1.Items.Add(i + "  cost next unit: " + ls.getUnitCost().ToString("F2"));
                 listBox1.Items.Add(i + "  production Speed: " + ls.getProductionSpeed().ToString("F6"));
-                listBox1.Items.Add("==================");
+                listBox1.Items.Add("==================");*/
             }
 
 
