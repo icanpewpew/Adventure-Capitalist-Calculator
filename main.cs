@@ -1,4 +1,4 @@
-﻿using Adventure_Capitalist_Calculator.counter;
+﻿using Adventure_Capitalist_Calculator.ItemComposite;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -31,43 +31,33 @@ namespace Adventure_Capitalist_Calculator
             BankInput.Text = "9";
             OilRigInput.Text = "0";
 
-            //LemonStand ls = new LemonStand(Convert.ToDouble(LemonStandInput.Text),1 );
-            //Newspaper news = new Newspaper(Convert.ToDouble(NewspaperInput.Text));
-
-
-            counter.counter.angelsCount = 9107;
-            counter.counter.angelsPercent = 3;
-
-            LemonStand ls = new LemonStand();
-            Newspaper news = new Newspaper();
-            for (int i = 250; i <= 300; i++)
-            {
-                news.level = i;
-                write(i + "   getRevenueIncreaseWithNextLevel: " + news.getRevenueIncreaseWithNextLevel().ToString("F2"));
-                write(i + "   getCurrentRevenue: " + news.getCurrentRevenue().ToString("F2"));
-
-
-                /*listBox1.Items.Add(i + "  cost next unit: " + ls.getUnitCost().ToString("F2"));
-                listBox1.Items.Add(i + "  production Speed: " + ls.getProductionSpeed().ToString("F6"));
-                listBox1.Items.Add("==================");*/
-            }
-
-
-
-
-
-            //double costNews = news.costNextUnit();
-            
+           
         }
 
-        private void write(string inLine)
-        {
-            listBox1.Items.Add(inLine);
-        }
+        private void write(string inLine) { listBox1.Items.Add(inLine); }
 
         private void suggestButton_Click(object sender, EventArgs e)
         {
+            listBox1.Items.Clear();
 
+            ItemContainer allItems = new ItemContainer();
+            allItems.angelsCount = 24416;
+            allItems.advertismentBonus = 2;
+            allItems.cashUpgradesLevel = 28;
+
+
+            allItems.setLemonStandLevel(Convert.ToDouble(LemonStandInput.Text));
+            allItems.setNewspaperLevel(Convert.ToDouble(NewspaperInput.Text));
+            allItems.setCarWashLevel(Convert.ToDouble(CarwashInput.Text));
+            allItems.setPizzaDeliveryLevel(Convert.ToDouble(PizzaDeliveryInput.Text));
+            allItems.setDonutShopLevel(Convert.ToDouble(DonutShopInput.Text));
+            allItems.setShrimpBoatLevel(Convert.ToDouble(ShrimpBoatInput.Text));
+            allItems.setHockeyTeamLevel(Convert.ToDouble(HockeyTeamInput.Text));
+            allItems.setMovieStudioLevel(Convert.ToDouble(MovieStudioInput.Text));
+            allItems.setBankLevel(Convert.ToDouble(BankInput.Text));
+            allItems.setOilCompanyLevel(Convert.ToDouble(OilRigInput.Text));
+
+            allItems.allitems.ForEach(i => write(i.GetType().Name.PadLeft(14) + " " + i.level.ToString().PadRight(5) + "   getCurrentRevenue: " + i.getCurrentRevenue().ToString("F2").PadLeft(30)));
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)

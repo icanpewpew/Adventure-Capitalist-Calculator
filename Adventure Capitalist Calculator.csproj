@@ -60,8 +60,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="counter\counter.cs" />
-    <Compile Include="counter\counterItems.cs" />
+    <Compile Include="ItemComposite\ItemHandler\ItemBase.cs" />
+    <Compile Include="ItemComposite\ItemContainer.cs" />
+    <Compile Include="ItemComposite\ItemHandler\Items.cs" />
     <Compile Include="main.cs">
       <SubType>Form</SubType>
     </Compile>

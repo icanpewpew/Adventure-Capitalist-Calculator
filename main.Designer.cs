@@ -47,7 +47,7 @@
             this.suggestButton.Location = new System.Drawing.Point(139, 156);
             this.suggestButton.Name = "suggestButton";
             this.suggestButton.Size = new System.Drawing.Size(144, 31);
-            this.suggestButton.TabIndex = 0;
+            this.suggestButton.TabIndex = 11;
             this.suggestButton.Text = "suggest next Steps";
             this.suggestButton.UseVisualStyleBackColor = true;
             this.suggestButton.Click += new System.EventHandler(this.suggestButton_Click);
@@ -130,7 +130,7 @@
             this.listBox1.Location = new System.Drawing.Point(12, 197);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(1036, 328);
-            this.listBox1.TabIndex = 11;
+            this.listBox1.TabIndex = 12;
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // main
