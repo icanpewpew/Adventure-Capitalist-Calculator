@@ -37,16 +37,16 @@ namespace Adventure_Capitalist_Calculator.ItemComposite
         private double _cashUpgradesLevel;
         
 
-        private LemonStand lemonStand { get; set; }
-        private Newspaper newspaper { get; set; }
-        private CarWash carWash { get; set; }
-        private PizzaDelivery pizzaDelivery { get; set; }
-        private DonutShop donutShop { get; set; }
-        private ShrimpBoat shrimpBoat { get; set; }
-        private HockeyTeam hockeyTeam { get; set; }
-        private MovieStudio movieStudio { get; set; }
-        private Bank bank { get; set; }
-        private OilCompany oilCompany { get; set; }
+        public LemonStand lemonStand { get; set; }
+        public Newspaper newspaper { get; set; }
+        public CarWash carWash { get; set; }
+        public PizzaDelivery pizzaDelivery { get; set; }
+        public DonutShop donutShop { get; set; }
+        public ShrimpBoat shrimpBoat { get; set; }
+        public HockeyTeam hockeyTeam { get; set; }
+        public MovieStudio movieStudio { get; set; }
+        public Bank bank { get; set; }
+        public OilCompany oilCompany { get; set; }
 
         public void setLemonStandLevel(double inLevel) { lemonStand.level = inLevel; setGlobalAchievmentModifier(); }
         public void setNewspaperLevel(double inLevel) { newspaper.level = inLevel; setGlobalAchievmentModifier(); }

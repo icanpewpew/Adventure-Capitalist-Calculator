@@ -45,9 +45,11 @@ namespace Adventure_Capitalist_Calculator.ItemComposite.ItemHandler
 
         protected abstract double getAchievementModifier(bool getRevenue);
 
-        public double getCurrentRevenue()
+        public double getCurrentRevenue() { return getRevenueForLevel(level); }
+
+        public double getRevenueForLevel(double inLevel)
         {
-            double revenueWithoutAngels = level * InitialRevenue * cashUpgradeModifier * advertismentBonus * newspaperRevenueModifier * AchievementRevenueModifier * GlobalAchievmentRevenueModifier;  
+            double revenueWithoutAngels = inLevel * InitialRevenue * cashUpgradeModifier * advertismentBonus * newspaperRevenueModifier * AchievementRevenueModifier * GlobalAchievmentRevenueModifier;
             double revenueAngel = revenueWithoutAngels * angelsCount * (angelsPercent / 100);
             return revenueWithoutAngels + revenueAngel;
         }
@@ -55,11 +57,14 @@ namespace Adventure_Capitalist_Calculator.ItemComposite.ItemHandler
         public double getRevenueIncreaseWithNextLevel()
         {
             double currentRevenue = getCurrentRevenue();
-            level++;
-            double nextRevenue = getCurrentRevenue();
-            level--;
+            double nextRevenue = getRevenueForLevel(level + 1);
 
             return nextRevenue - currentRevenue;
+        }
+
+        public double get1TimesBuyCost()
+        {
+            return InitialCost * Math.Pow(CalcCoefficient, level) ;
         }
 
         private double getNewspaperRevenueModifier() { return getNewspaperModifier(true); }

@@ -20,6 +20,11 @@ namespace Adventure_Capitalist_Calculator.ItemComposite.ItemHandler
             InitialProductivity = 1.67;
         }
 
+        new public double get1TimesBuyCost()
+        {
+            return InitialCost * Math.Pow(CalcCoefficient, level - 1);
+        }
+
         protected override double getAchievementModifier(bool getRevenue)
         {
             double result = 1;
@@ -53,6 +58,8 @@ namespace Adventure_Capitalist_Calculator.ItemComposite.ItemHandler
 
             return result;
         }
+
+
     }
 
     class Newspaper : ItemBase
