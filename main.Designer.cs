@@ -44,7 +44,7 @@
             // 
             // suggestButton
             // 
-            this.suggestButton.Location = new System.Drawing.Point(131, 238);
+            this.suggestButton.Location = new System.Drawing.Point(139, 156);
             this.suggestButton.Name = "suggestButton";
             this.suggestButton.Size = new System.Drawing.Size(144, 31);
             this.suggestButton.TabIndex = 0;
@@ -124,17 +124,20 @@
             // 
             // listBox1
             // 
+            this.listBox1.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(62, 293);
+            this.listBox1.ItemHeight = 18;
+            this.listBox1.Location = new System.Drawing.Point(12, 197);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(296, 160);
+            this.listBox1.Size = new System.Drawing.Size(1036, 328);
             this.listBox1.TabIndex = 11;
+            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
-            // Form1
+            // main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(569, 552);
+            this.ClientSize = new System.Drawing.Size(1060, 542);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.OilRigInput);
             this.Controls.Add(this.BankInput);
@@ -147,7 +150,7 @@
             this.Controls.Add(this.NewspaperInput);
             this.Controls.Add(this.LemonStandInput);
             this.Controls.Add(this.suggestButton);
-            this.Name = "Form1";
+            this.Name = "main";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);

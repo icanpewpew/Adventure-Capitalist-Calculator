@@ -36,14 +36,15 @@ namespace Adventure_Capitalist_Calculator
 
 
             counter.counter.angelsCount = 9107;
-            counter.counter.angelsPercent = 2;
+            counter.counter.angelsPercent = 3;
 
             LemonStand ls = new LemonStand();
             Newspaper news = new Newspaper();
-            for (int i = 200; i <= 300; i++)
+            for (int i = 250; i <= 300; i++)
             {
                 news.level = i;
-                listBox1.Items.Add(i + "   getRevenueIncreaseWithNextLevel: " + news.getRevenueIncreaseWithNextLevel().ToString("F2"));
+                write(i + "   getRevenueIncreaseWithNextLevel: " + news.getRevenueIncreaseWithNextLevel().ToString("F2"));
+                write(i + "   getCurrentRevenue: " + news.getCurrentRevenue().ToString("F2"));
 
 
                 /*listBox1.Items.Add(i + "  cost next unit: " + ls.getUnitCost().ToString("F2"));
@@ -59,7 +60,17 @@ namespace Adventure_Capitalist_Calculator
             
         }
 
+        private void write(string inLine)
+        {
+            listBox1.Items.Add(inLine);
+        }
+
         private void suggestButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

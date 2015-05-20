@@ -27,10 +27,7 @@ namespace Adventure_Capitalist_Calculator.counter
             return InitialCost * Math.Pow(CalcCoefficient, level);
         }
 
-        public double getProductionSpeed()
-        {
-            return InitialTime / (Math.Pow(2, getSpeedUpgrades())) / getGlobalAchievmentIncrease();
-        }
+
 
         public double getMoneyGeneratedByUnis()
         {
@@ -50,7 +47,7 @@ namespace Adventure_Capitalist_Calculator.counter
 
         public double getCurrentRevenue()
         {
-            double revenueWithoutAngels = level * InitialRevenue * 54;  // * 3 * 3 * 3 * 2;     $upgradeLocal * $upgradeLocal * $upgradeGlobal * addbonus
+            double revenueWithoutAngels = level * InitialRevenue * 3 * 3 * 3 * 3 * 3 * 2;  // * 3 * 3 * 3 * 2;     $upgradeLocal * $upgradeLocal * $upgradeGlobal * addbonus
             double revenueAngel = revenueWithoutAngels * angelsCount * (angelsPercent / 100);
             return revenueWithoutAngels + revenueAngel;
         }
@@ -67,10 +64,8 @@ namespace Adventure_Capitalist_Calculator.counter
 
         public double getProductionSpeed()
         {
-
-            return 1;
+            return InitialTime / (Math.Pow(2, getSpeedUpgrades())) / getGlobalAchievmentIncrease();
         }
-
 
         /* calc effiency
          * (effiency)                    = (cost per unit) / ($ increase pro minute) 
