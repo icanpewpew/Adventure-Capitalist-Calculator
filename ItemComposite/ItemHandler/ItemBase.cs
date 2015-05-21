@@ -45,6 +45,14 @@ namespace Adventure_Capitalist_Calculator.ItemComposite.ItemHandler
 
         protected abstract double getAchievementModifier(bool getRevenue);
 
+        public ItemBase()
+        {
+            GlobalAchievmentRevenueModifier = 1;
+            GlobalAchievmentSpeedModifier = 1;
+            advertismentBonus = 1;
+            cashUpgradeModifier = 1;
+        }
+
         public double getCurrentRevenue() 
         {
             double revenueWithoutAngels = level * InitialRevenue * cashUpgradeModifier * advertismentBonus * newspaperRevenueModifier * AchievementRevenueModifier * GlobalAchievmentRevenueModifier;

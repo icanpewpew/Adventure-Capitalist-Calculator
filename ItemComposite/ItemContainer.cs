@@ -58,7 +58,14 @@ namespace Adventure_Capitalist_Calculator.ItemComposite
         public void setMovieStudioLevel(double inLevel) { movieStudio.level = inLevel; setGlobalAchievmentModifier(); }
         public void setBankLevel(double inLevel) { bank.level = inLevel; setGlobalAchievmentModifier(); }
         public void setOilCompanyLevel(double inLevel) { oilCompany.level = inLevel; setGlobalAchievmentModifier(); }
+        public void setItemLevel(ItemBase inItem, double inLevel)
+        {
+            inItem.level = inLevel;
+            setGlobalAchievmentModifier(); 
+            totalMoneySpend += inItem.getBuyCost();
+        }
 
+        public double totalMoneySpend { get; set; }
 
         private void setGlobalAchievmentModifier()
         {
@@ -102,9 +109,32 @@ namespace Adventure_Capitalist_Calculator.ItemComposite
 
         public List<ItemBase> allitems = new List<ItemBase>();
 
+        public ItemBase getItemWithLowestEfficency()
+        {
+            return allitems.First(i => i.getBuyEfficiency().Equals(allitems.Min(o => o.getBuyEfficiency())));
+        }
+
+        public ItemBase getItemWithCheapestBuyCost()
+        {
+            return allitems.First(i => i.getBuyCost().Equals(allitems.Min(o => o.getBuyCost())));
+        }
+
+        public ItemBase getItemWithLowestLevel()
+        {
+            return allitems.Where(i => i.level.Equals(allitems.Min(o => o.level))).OrderBy(i => i.getBuyCost()).First();
+        }
+
+        public double getTotalRevenuePerSecond()
+        {
+            return allitems.Sum(o => o.getRevenuePerSecond());
+        }
+
         public ItemContainer()
         {
+            angelsCount = 0;
+            advertismentBonus = 2;
             cashUpgradesLevel = 1;
+            totalMoneySpend = 0;
             lemonStand = new LemonStand();
             newspaper = new Newspaper();
             carWash = new CarWash();
@@ -206,6 +236,10 @@ namespace Adventure_Capitalist_Calculator.ItemComposite
 
             }
         }
+
+
+
+
 
 
     }
