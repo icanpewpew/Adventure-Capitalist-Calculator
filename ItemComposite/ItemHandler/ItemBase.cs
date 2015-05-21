@@ -45,11 +45,9 @@ namespace Adventure_Capitalist_Calculator.ItemComposite.ItemHandler
 
         protected abstract double getAchievementModifier(bool getRevenue);
 
-        public double getCurrentRevenue() { return getRevenueForLevel(level); }
-
-        public double getRevenueForLevel(double inLevel)
+        public double getCurrentRevenue() 
         {
-            double revenueWithoutAngels = inLevel * InitialRevenue * cashUpgradeModifier * advertismentBonus * newspaperRevenueModifier * AchievementRevenueModifier * GlobalAchievmentRevenueModifier;
+            double revenueWithoutAngels = level * InitialRevenue * cashUpgradeModifier * advertismentBonus * newspaperRevenueModifier * AchievementRevenueModifier * GlobalAchievmentRevenueModifier;
             double revenueAngel = revenueWithoutAngels * angelsCount * (angelsPercent / 100);
             return revenueWithoutAngels + revenueAngel;
         }
@@ -57,14 +55,30 @@ namespace Adventure_Capitalist_Calculator.ItemComposite.ItemHandler
         public double getRevenueIncreaseWithNextLevel()
         {
             double currentRevenue = getCurrentRevenue();
-            double nextRevenue = getRevenueForLevel(level + 1);
+            level++;
+            double nextRevenue = getCurrentRevenue();
+            level--;
 
             return nextRevenue - currentRevenue;
         }
 
-        public double get1TimesBuyCost()
+        public double getRevenuePerSecond()
+        {
+            return getCurrentRevenue() / getProductionSpeed();
+        }
+
+        private double getProductionSpeed() {
+            return InitialTime / (newspaperSpeedModifier * AchievementSpeedModifier * GlobalAchievmentSpeedModifier);
+        }
+
+        public double getBuyCost()
         {
             return InitialCost * Math.Pow(CalcCoefficient, level) ;
+        }
+
+        public double getBuyEfficiency()
+        {
+            return getBuyCost() / getRevenuePerSecond();
         }
 
         private double getNewspaperRevenueModifier() { return getNewspaperModifier(true); }
@@ -113,6 +127,8 @@ namespace Adventure_Capitalist_Calculator.ItemComposite.ItemHandler
 
             return result;
         }
+
+
 
     }
 }
