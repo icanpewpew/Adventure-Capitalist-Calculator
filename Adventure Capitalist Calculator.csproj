@@ -60,6 +60,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="dataHolder.cs" />
+    <Compile Include="FormState.cs" />
     <Compile Include="ItemComposite\ItemHandler\ItemBase.cs" />
     <Compile Include="ItemComposite\ItemContainer.cs" />
     <Compile Include="ItemComposite\ItemHandler\Items.cs" />
