@@ -18,6 +18,7 @@ namespace Adventure_Capitalist_Calculator
     public partial class main : Form
     {
         FormState state = new FormState();
+        ItemContainer itemContainer = new ItemContainer();
 
         public main()
         {
@@ -47,6 +48,13 @@ namespace Adventure_Capitalist_Calculator
                 state.movieStudioState = MovieStudioInput.Text;
                 state.bankState = BankInput.Text;
                 state.oilRigState = OilRigInput.Text;
+
+                state.angelCount = angelCountText.Text;
+
+                state.selectedCashUpgradeCombo = cashUpgradeCombo.SelectedIndex;
+                state.selectedAngelUpgradesCombo = angelUpgradesCombo.SelectedIndex;
+                state.selectedManagerAngelUpgradeCombo = managerAngelUpgradeCombo.SelectedIndex;
+
                 XmlSerializer ser = new XmlSerializer(typeof(FormState));
                 ser.Serialize(sw, state);
             }
@@ -57,11 +65,12 @@ namespace Adventure_Capitalist_Calculator
             writeConfig();
         }
 
-        ItemContainer itemContainer = new ItemContainer();
+        
 
         private void Form1_Load(object sender, EventArgs e)
         {
             Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-us");
+            initCombos();
 
             if (File.Exists(FormState.stateFilePath)) loadConfig();
 
@@ -76,30 +85,35 @@ namespace Adventure_Capitalist_Calculator
             BankInput.Text = state.bankState ?? "1";
             OilRigInput.Text = state.oilRigState ?? "1";
 
-            angelCountText.Text = "2893000";
+            angelCountText.Text = state.angelCount ?? "1";
 
+            cashUpgradeCombo.SelectedIndex = state.selectedCashUpgradeCombo;
+            angelUpgradesCombo.SelectedIndex = state.selectedAngelUpgradesCombo;
+            managerAngelUpgradeCombo.SelectedIndex = state.selectedManagerAngelUpgradeCombo;
+
+            //suggestButton_Click(null, null);
+
+            
+
+        }
+
+        private void initCombos()
+        {
             cashUpgradeCombo.DataSource = new BindingSource(dataHolder.getCashUpgradeComboSource(), null);
             cashUpgradeCombo.DisplayMember = "Value";
             cashUpgradeCombo.ValueMember = "Key";
-
-
             angelUpgradesCombo.DataSource = new BindingSource(dataHolder.getAngelUpgradeComboSource(), null);
             angelUpgradesCombo.DisplayMember = "Value";
             angelUpgradesCombo.ValueMember = "Key";
-
             managerAngelUpgradeCombo.DataSource = new BindingSource(dataHolder.getManagerAngelUpgradeComboSource(), null);
             managerAngelUpgradeCombo.DisplayMember = "Value";
             managerAngelUpgradeCombo.ValueMember = "Key";
-
-            suggestButton_Click(null, null);
-           
         }
-
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             itemContainer.cashUpgradesLevel = ((KeyValuePair<double, string>)cashUpgradeCombo.SelectedItem).Key;
-            suggestButton_Click(null, null);
+            //suggestButton_Click(null, null);
         }
 
         private void angelUpgradesCombo_SelectedIndexChanged(object sender, EventArgs e)

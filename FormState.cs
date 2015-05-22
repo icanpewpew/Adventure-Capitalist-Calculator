@@ -32,5 +32,13 @@ namespace Adventure_Capitalist_Calculator
         public string bankState { get; set; }
 
         public string oilRigState { get; set; }
+
+        public string angelCount { get; set; }
+
+        public int selectedCashUpgradeCombo { get; set; }
+
+        public int selectedAngelUpgradesCombo { get; set; }
+
+        public int selectedManagerAngelUpgradeCombo { get; set; }
     }
 }

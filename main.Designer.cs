@@ -379,7 +379,7 @@
             this.Controls.Add(this.LemonStandInput);
             this.Controls.Add(this.suggestButton);
             this.Name = "main";
-            this.Text = "Form1";
+            this.Text = "Adventure Capitalist Calculator";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.main_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
