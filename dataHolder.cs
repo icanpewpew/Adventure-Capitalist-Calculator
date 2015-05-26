@@ -94,17 +94,17 @@ namespace Adventure_Capitalist_Calculator
             comboSource.Add(45, "4 - OilRig");
             comboSource.Add(46, "4 - All");
             comboSource.Add(47, "4 - ANGEL - $10 Septillion");
-            comboSource.Add(48, "5 - LemonStand");
-            comboSource.Add(49, "5 - Newspaper");
-            comboSource.Add(50, "5 - Carwash");
-            comboSource.Add(51, "5 - PizzaDelivery");
-            comboSource.Add(52, "5 - DonutShop");
-            comboSource.Add(53, "5 - ShrimpBoat");
-            comboSource.Add(54, "5 - HockeyTeam");
-            comboSource.Add(55, "5 - MovieStudio");
-            comboSource.Add(56, "5 - Bank");
-            comboSource.Add(57, "5 - OilRig");
-            comboSource.Add(58, "5 - All");
+            comboSource.Add(48, "5 - LemonStand x7");
+            comboSource.Add(49, "5 - Newspaper x7");
+            comboSource.Add(50, "5 - Carwash x7");
+            comboSource.Add(51, "5 - PizzaDelivery x7");
+            comboSource.Add(52, "5 - DonutShop x7");
+            comboSource.Add(53, "5 - ShrimpBoat x7");
+            comboSource.Add(54, "5 - HockeyTeam x7");
+            comboSource.Add(55, "5 - MovieStudio x7");
+            comboSource.Add(56, "5 - Bank x7");
+            comboSource.Add(57, "5 - OilRig x7");
+            comboSource.Add(58, "5 - All x7");
 
             return comboSource;
         }

@@ -63,7 +63,10 @@ namespace Adventure_Capitalist_Calculator.ItemComposite
             inItem.level = inLevel;
             setGlobalAchievmentModifier(); 
             totalMoneySpend += inItem.getBuyCost();
+            levelUpPath.Append(inLevel + "\t" + inItem.GetType().Name + "\t" + getTotalRevenuePerSecond() + "\t" + totalMoneySpend + "\t" + getTotalBuyEfficiency() + "\r\n");
         }
+
+        public StringBuilder levelUpPath = new StringBuilder();
 
         public double totalMoneySpend { get; set; }
 
@@ -127,6 +130,11 @@ namespace Adventure_Capitalist_Calculator.ItemComposite
         public double getTotalRevenuePerSecond()
         {
             return allitems.Sum(o => o.getRevenuePerSecond());
+        }
+
+        public double getTotalBuyEfficiency()
+        {
+            return allitems.Sum(o => o.getBuyEfficiency());
         }
 
         public ItemContainer()
@@ -224,7 +232,7 @@ namespace Adventure_Capitalist_Calculator.ItemComposite
                 if (value >= 50) newspaper.cashUpgradeModifier *= 7;
                 if (value >= 51) carWash.cashUpgradeModifier *= 7;
                 if (value >= 52) pizzaDelivery.cashUpgradeModifier *= 7;
-                if (value >= 53) donutShop.cashUpgradeModifier *= 3;
+                if (value >= 53) donutShop.cashUpgradeModifier *= 7;
                 if (value >= 54) shrimpBoat.cashUpgradeModifier *= 7;
                 if (value >= 55) hockeyTeam.cashUpgradeModifier *= 7;
                 if (value >= 56) movieStudio.cashUpgradeModifier *= 7;

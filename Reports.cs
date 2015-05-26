@@ -114,7 +114,44 @@ namespace Adventure_Capitalist_Calculator
             reportContent.Close();
         }
 
-        public void writeReport()
+        public void writeChooseRandom()
+        {
+            List<ItemContainer> allRandoms = new List<ItemContainer>();
+            int totalContainerCount = 1000;
+
+
+            for (int i = 0; i < totalContainerCount; i++)
+                allRandoms.Add(new ItemContainer());
+
+            reportContent = new System.IO.StreamWriter(getFilePath(GetCurrentMethod()), false, Encoding.UTF8);
+
+
+            StringBuilder headerLine = new StringBuilder();
+            headerLine.Append("\tlevel spend");
+            reportContent.WriteLine(headerLine.ToString());
+
+            Random random = new Random();
+
+            //double errorCorrection = 1066647.67;
+            for (int i = 1; i < 10000; i++)
+            {
+                foreach (ItemContainer curRandom in allRandoms)
+                {
+                    ItemBase curItem = curRandom.allitems[random.Next(0, curRandom.allitems.Count())];
+                    curRandom.setItemLevel(curItem, curItem.level + 1);
+                }
+            }
+
+            ItemContainer bestContainer = allRandoms.First(i => i.getTotalBuyEfficiency().Equals(allRandoms.Min(o => o.getTotalBuyEfficiency())));
+
+            reportContent.WriteLine(bestContainer.levelUpPath.ToString());
+
+
+            reportContent.Close();
+
+        }
+
+        public void writeTestStrategies()
         {
             ItemContainer effContainer = new ItemContainer();
             ItemContainer ceapBuyCostContainer = new ItemContainer();

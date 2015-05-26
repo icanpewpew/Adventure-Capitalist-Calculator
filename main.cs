@@ -91,9 +91,11 @@ namespace Adventure_Capitalist_Calculator
             angelUpgradesCombo.SelectedIndex = state.selectedAngelUpgradesCombo;
             managerAngelUpgradeCombo.SelectedIndex = state.selectedManagerAngelUpgradeCombo;
 
-            //suggestButton_Click(null, null);
+            suggestButton_Click(null, null);
 
-            
+            //Reports report = new Reports();
+            //report.writeTestStrategies();
+            //report.writeChooseRandom();
 
         }
 
@@ -151,13 +153,9 @@ namespace Adventure_Capitalist_Calculator
             write("");
             write("");
             write("");
-            itemContainer.allitems.OrderBy(i => i.getBuyEfficiency()).ToList().ForEach(i => write(i.GetType().Name.PadLeft(20) + " " + i.getBuyEfficiency().ToString("F2").PadLeft(20)));
+            itemContainer.allitems.OrderBy(i => i.getBuyEfficiency()).ToList().ForEach(i => write(i.GetType().Name.PadLeft(20) + " " + i.getBuyEfficiency().ToString("G3").PadLeft(10)));
 
-            //Reports report = new Reports();
-            //report.writeEfficiencyOverLevel(itemContainer);
-            //report.writeAlwaysChooseTheEffItem(itemContainer);
-            //report.writeAlwaysChooseTheCheapestItem(itemContainer);
-            //report.writeReport();
+
 
         }
 
@@ -166,69 +164,27 @@ namespace Adventure_Capitalist_Calculator
 
         }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            itemContainer.setItemLevel(itemContainer.getItemWithLowestEfficency(), itemContainer.getItemWithLowestEfficency().level + 1);
+
+            setInputBoxesWithContainer();
+
+            suggestButton_Click(null, null);
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
-            listBox1.Items.Clear();
-
-            itemContainer.setLemonStandLevel(Convert.ToDouble(LemonStandInput.Text));
-            itemContainer.setNewspaperLevel(Convert.ToDouble(NewspaperInput.Text));
-            itemContainer.setCarWashLevel(Convert.ToDouble(CarwashInput.Text));
-            itemContainer.setPizzaDeliveryLevel(Convert.ToDouble(PizzaDeliveryInput.Text));
-            itemContainer.setDonutShopLevel(Convert.ToDouble(DonutShopInput.Text));
-            itemContainer.setShrimpBoatLevel(Convert.ToDouble(ShrimpBoatInput.Text));
-            itemContainer.setHockeyTeamLevel(Convert.ToDouble(HockeyTeamInput.Text));
-            itemContainer.setMovieStudioLevel(Convert.ToDouble(MovieStudioInput.Text));
-            itemContainer.setBankLevel(Convert.ToDouble(BankInput.Text));
-            itemContainer.setOilCompanyLevel(Convert.ToDouble(OilRigInput.Text));
-
-            write(itemContainer.getItemWithLowestEfficency().GetType().Name);
-            write("");
-            write("");
-            write("");
-            itemContainer.allitems.OrderBy(i => i.getBuyEfficiency()).ToList().ForEach(i => write(i.GetType().Name.PadLeft(20) + " " + i.getBuyEfficiency().ToString("F2").PadLeft(20)));
-
-
-
             itemContainer.setItemLevel(itemContainer.getItemWithLowestEfficency(), itemContainer.getItemWithLowestEfficency().level + 10);
-
-            LemonStandInput.Text = itemContainer.lemonStand.level.ToString();
-            NewspaperInput.Text = itemContainer.newspaper.level.ToString();
-            CarwashInput.Text = itemContainer.carWash.level.ToString();
-            PizzaDeliveryInput.Text = itemContainer.pizzaDelivery.level.ToString();
-            DonutShopInput.Text = itemContainer.donutShop.level.ToString();
-            ShrimpBoatInput.Text = itemContainer.shrimpBoat.level.ToString();
-            HockeyTeamInput.Text = itemContainer.hockeyTeam.level.ToString();
-            MovieStudioInput.Text = itemContainer.movieStudio.level.ToString();
-            BankInput.Text = itemContainer.bank.level.ToString();
-            OilRigInput.Text = itemContainer.oilCompany.level.ToString();
+            
+            setInputBoxesWithContainer();
+            
+            suggestButton_Click(null, null);
             
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void setInputBoxesWithContainer()
         {
-            listBox1.Items.Clear();
-
-            itemContainer.setLemonStandLevel(Convert.ToDouble(LemonStandInput.Text));
-            itemContainer.setNewspaperLevel(Convert.ToDouble(NewspaperInput.Text));
-            itemContainer.setCarWashLevel(Convert.ToDouble(CarwashInput.Text));
-            itemContainer.setPizzaDeliveryLevel(Convert.ToDouble(PizzaDeliveryInput.Text));
-            itemContainer.setDonutShopLevel(Convert.ToDouble(DonutShopInput.Text));
-            itemContainer.setShrimpBoatLevel(Convert.ToDouble(ShrimpBoatInput.Text));
-            itemContainer.setHockeyTeamLevel(Convert.ToDouble(HockeyTeamInput.Text));
-            itemContainer.setMovieStudioLevel(Convert.ToDouble(MovieStudioInput.Text));
-            itemContainer.setBankLevel(Convert.ToDouble(BankInput.Text));
-            itemContainer.setOilCompanyLevel(Convert.ToDouble(OilRigInput.Text));
-
-            write(itemContainer.getItemWithLowestEfficency().GetType().Name);
-            write("");
-            write("");
-            write("");
-            itemContainer.allitems.OrderBy(i => i.getBuyEfficiency()).ToList().ForEach(i => write(i.GetType().Name.PadLeft(20) + " " + i.getBuyEfficiency().ToString("F2").PadLeft(20)));
-
-
-
-            itemContainer.setItemLevel(itemContainer.getItemWithLowestEfficency(), itemContainer.getItemWithLowestEfficency().level + 1);
-
             LemonStandInput.Text = itemContainer.lemonStand.level.ToString();
             NewspaperInput.Text = itemContainer.newspaper.level.ToString();
             CarwashInput.Text = itemContainer.carWash.level.ToString();
