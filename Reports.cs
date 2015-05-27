@@ -117,8 +117,8 @@ namespace Adventure_Capitalist_Calculator
         public void writeChooseRandom()
         {
             List<ItemContainer> allRandoms = new List<ItemContainer>();
-            int totalContainerCount = 1000;
-
+            int totalContainerCount = 10000;
+            int calcToLevel = 10000;
 
             for (int i = 0; i < totalContainerCount; i++)
                 allRandoms.Add(new ItemContainer());
@@ -131,9 +131,7 @@ namespace Adventure_Capitalist_Calculator
             reportContent.WriteLine(headerLine.ToString());
 
             Random random = new Random();
-
-            //double errorCorrection = 1066647.67;
-            for (int i = 1; i < 10000; i++)
+            for (int i = 1; i <= calcToLevel; i++)
             {
                 foreach (ItemContainer curRandom in allRandoms)
                 {
@@ -142,7 +140,9 @@ namespace Adventure_Capitalist_Calculator
                 }
             }
 
-            ItemContainer bestContainer = allRandoms.First(i => i.getTotalBuyEfficiency().Equals(allRandoms.Min(o => o.getTotalBuyEfficiency())));
+
+            double lowesetAvg = allRandoms.Min(i => i.totalBuyEfficiencyHistory.Average());
+            ItemContainer bestContainer = allRandoms.First(i => i.totalBuyEfficiencyHistory.Average().Equals(lowesetAvg));
 
             reportContent.WriteLine(bestContainer.levelUpPath.ToString());
 

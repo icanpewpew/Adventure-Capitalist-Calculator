@@ -60,11 +60,14 @@ namespace Adventure_Capitalist_Calculator.ItemComposite
         public void setOilCompanyLevel(double inLevel) { oilCompany.level = inLevel; setGlobalAchievmentModifier(); }
         public void setItemLevel(ItemBase inItem, double inLevel)
         {
+            totalBuyEfficiencyHistory.Add(getTotalBuyEfficiency());
             inItem.level = inLevel;
             setGlobalAchievmentModifier(); 
             totalMoneySpend += inItem.getBuyCost();
             levelUpPath.Append(inLevel + "\t" + inItem.GetType().Name + "\t" + getTotalRevenuePerSecond() + "\t" + totalMoneySpend + "\t" + getTotalBuyEfficiency() + "\r\n");
         }
+
+        public List<double> totalBuyEfficiencyHistory = new List<double>();
 
         public StringBuilder levelUpPath = new StringBuilder();
 

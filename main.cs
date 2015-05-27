@@ -93,9 +93,9 @@ namespace Adventure_Capitalist_Calculator
 
             suggestButton_Click(null, null);
 
-            //Reports report = new Reports();
+            Reports report = new Reports();
             //report.writeTestStrategies();
-            //report.writeChooseRandom();
+            report.writeChooseRandom();
 
         }
 

@@ -133,6 +133,48 @@ namespace Adventure_Capitalist_Calculator.ItemComposite.ItemHandler
             if (getRevenue && this is LemonStand && Newspaper.newsPaperLevel >= 650) result *= 6;
             if (getRevenue && this is CarWash && Newspaper.newsPaperLevel >= 675) result *= 6;
 
+            if (getRevenue && this is MovieStudio && Newspaper.newsPaperLevel >= 700) result *= 11;
+            if (getRevenue && this is PizzaDelivery && Newspaper.newsPaperLevel >= 725) result *= 6;
+            if (getRevenue && this is DonutShop && Newspaper.newsPaperLevel >= 750) result *= 6;
+            if (getRevenue && this is LemonStand && Newspaper.newsPaperLevel >= 775) result *= 3;
+
+            if (getRevenue && this is Bank && Newspaper.newsPaperLevel >= 800) result *= 11;
+            if (getRevenue && this is CarWash && Newspaper.newsPaperLevel >= 825) result *= 7;
+            if (getRevenue && this is PizzaDelivery && Newspaper.newsPaperLevel >= 850) result *= 7;
+            if (getRevenue && this is DonutShop && Newspaper.newsPaperLevel >= 875) result *= 7;
+
+            if (getRevenue && this is OilCompany && Newspaper.newsPaperLevel >= 900) result *= 11;
+            if (getRevenue && this is ShrimpBoat && Newspaper.newsPaperLevel >= 925) result *= 7;
+            if (getRevenue && this is HockeyTeam && Newspaper.newsPaperLevel >= 950) result *= 7;
+            if (getRevenue && this is MovieStudio && Newspaper.newsPaperLevel >= 975) result *= 7;
+
+            if (getRevenue && this is Newspaper && Newspaper.newsPaperLevel >= 1000) result *= 7777777;
+            if (getRevenue && this is Bank && Newspaper.newsPaperLevel >= 1025) result *= 7;
+            if (getRevenue && this is OilCompany && Newspaper.newsPaperLevel >= 1050) result *= 7;
+            if (getRevenue && this is CarWash && Newspaper.newsPaperLevel >= 1075) result *= 8;
+
+            if (getRevenue && this is PizzaDelivery && Newspaper.newsPaperLevel >= 1100) result *= 8;
+            if (getRevenue && this is DonutShop && Newspaper.newsPaperLevel >= 1125) result *= 8;
+            if (getRevenue && this is ShrimpBoat && Newspaper.newsPaperLevel >= 1150) result *= 8;
+            if (getRevenue && this is HockeyTeam && Newspaper.newsPaperLevel >= 1175) result *= 8;
+
+            if (getRevenue && this is MovieStudio && Newspaper.newsPaperLevel >= 1200) result *= 8;
+            if (getRevenue && this is Bank && Newspaper.newsPaperLevel >= 1225) result *= 8;
+            if (getRevenue && this is OilCompany && Newspaper.newsPaperLevel >= 1250) result *= 8;
+
+            if (getRevenue && this is Newspaper && Newspaper.newsPaperLevel >= 1300) result *= 7777;
+            if (getRevenue && this is LemonStand && Newspaper.newsPaperLevel >= 1350) result *= 9;
+
+            if (getRevenue && this is CarWash && Newspaper.newsPaperLevel >= 1400) result *= 9;
+            if (getRevenue && this is PizzaDelivery && Newspaper.newsPaperLevel >= 1450) result *= 9;
+
+            if (getRevenue && this is DonutShop && Newspaper.newsPaperLevel >= 1500) result *= 9;
+            if (getRevenue && this is ShrimpBoat && Newspaper.newsPaperLevel >= 1550) result *= 9;
+
+            if (getRevenue && this is HockeyTeam && Newspaper.newsPaperLevel >= 1600) result *= 9;
+            if (getRevenue && this is MovieStudio && Newspaper.newsPaperLevel >= 1650) result *= 9;
+
+
             return result;
         }
 
