@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Adventure_Capitalist_Calculator.ItemComposite.Container;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,9 +28,10 @@ namespace Adventure_Capitalist_Calculator.ItemComposite.ItemHandler
         public double GlobalAchievmentSpeedModifier { get; set; }
 
         public double cashUpgradeModifier { get; set; }
-        public double angelsCount { get; set; }
-        public double angelsPercent { get; set; }
-        public double advertismentBonus { get; set; }
+        
+        
+        
+        
 
         protected double CalcCoefficient { get; set; }
         protected double InitialRevenue { get; set; }
@@ -45,20 +47,32 @@ namespace Adventure_Capitalist_Calculator.ItemComposite.ItemHandler
 
         protected abstract double getAchievementModifier(bool getRevenue);
 
-        public ItemBase()
+        private GlobalStats globalStats;
+        private double advertismentBonus { get { return globalStats.advertismentBonus; } }
+        private double angelsCount { get { return globalStats.angelsCount; } }
+        private double angelsPercent { get { return globalStats.angelsPercent; } }
+
+        public ItemBase(GlobalStats inGlobalStats) 
         {
+            globalStats = inGlobalStats;
             GlobalAchievmentRevenueModifier = 1;
             GlobalAchievmentSpeedModifier = 1;
-            advertismentBonus = 1;
             cashUpgradeModifier = 1;
         }
 
         public double getCurrentRevenue() 
         {
-            double revenueWithoutAngels = level * InitialRevenue * cashUpgradeModifier * advertismentBonus * newspaperRevenueModifier * AchievementRevenueModifier * GlobalAchievmentRevenueModifier;
+            double revenueWithoutAngels = level * 
+                                          InitialRevenue * 
+                                          cashUpgradeModifier * 
+                                          advertismentBonus * 
+                                          AchievementRevenueModifier * 
+                                          GlobalAchievmentRevenueModifier *
+                                          ((calculateWithNewspaper) ? newspaperRevenueModifier : 1);
             double revenueAngel = revenueWithoutAngels * angelsCount * (angelsPercent / 100);
             return revenueWithoutAngels + revenueAngel;
         }
+
 
         public double getRevenueIncreaseWithNextLevel()
         {
@@ -75,8 +89,32 @@ namespace Adventure_Capitalist_Calculator.ItemComposite.ItemHandler
             return getCurrentRevenue() / getProductionSpeed();
         }
 
+        private bool calculateWithNewspaper = true;
+
+        public double getRevenuePerSecondWithoutNewspaper()
+        {
+            double result;
+
+            if (this is Newspaper)
+                result = getCurrentRevenue() / getProductionSpeed();
+            else
+            {
+                calculateWithNewspaper = false;
+                result = getCurrentRevenue() / getProductionSpeed();
+                calculateWithNewspaper = true;
+            }
+            return result;
+        }
+
+        public double getRevenueDeltaInRevenueBetweenNewspaperAndWithout()
+        {
+            return getRevenuePerSecond() - getRevenuePerSecondWithoutNewspaper();
+        }
+
         private double getProductionSpeed() {
-            return InitialTime / (newspaperSpeedModifier * AchievementSpeedModifier * GlobalAchievmentSpeedModifier);
+            return InitialTime / (AchievementSpeedModifier * 
+                                  GlobalAchievmentSpeedModifier * 
+                                  ((calculateWithNewspaper) ? newspaperSpeedModifier : 1));
         }
 
         public double getBuyCost()
@@ -84,7 +122,7 @@ namespace Adventure_Capitalist_Calculator.ItemComposite.ItemHandler
             return InitialCost * Math.Pow(CalcCoefficient, level) ;
         }
 
-        public double getBuyEfficiency()
+        public virtual double getBuyEfficiency()
         {
             return getBuyCost() / getRevenuePerSecond();
         }

@@ -62,9 +62,11 @@
   <ItemGroup>
     <Compile Include="dataHolder.cs" />
     <Compile Include="FormState.cs" />
+    <Compile Include="ItemComposite\Container\ItemContainer.cs" />
     <Compile Include="ItemComposite\ItemHandler\ItemBase.cs" />
-    <Compile Include="ItemComposite\ItemContainer.cs" />
+    <Compile Include="ItemComposite\Container\EarthItemContainer.cs" />
     <Compile Include="ItemComposite\ItemHandler\Items.cs" />
+    <Compile Include="ItemComposite\Container\MoonItemContainer.cs" />
     <Compile Include="main.cs">
       <SubType>Form</SubType>
     </Compile>

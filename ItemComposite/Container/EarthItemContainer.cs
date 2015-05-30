@@ -1,4 +1,5 @@
-﻿using Adventure_Capitalist_Calculator.ItemComposite.ItemHandler;
+﻿using Adventure_Capitalist_Calculator.ItemComposite.Container;
+using Adventure_Capitalist_Calculator.ItemComposite.ItemHandler;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,32 +8,8 @@ using System.Threading.Tasks;
 
 namespace Adventure_Capitalist_Calculator.ItemComposite
 {
-    class ItemContainer
+    class EarthItemContainer : ItemContainer
     {
-
-        private double _angelsCount;
-        public double angelsCount
-        {
-            get { return _angelsCount; }
-            set
-            {
-                allitems.ForEach(i => i.angelsCount = value);
-                _angelsCount = value;
-            }
-        }
-
-        private double _advertismentBonus { get; set; }
-        public double advertismentBonus
-        {
-            get { return _advertismentBonus; }
-            set
-            {
-                allitems.ForEach(i => i.advertismentBonus = value);
-                _advertismentBonus = value;
-            }
-        }
-
-
 
         private double _cashUpgradesLevel;
         
@@ -48,21 +25,25 @@ namespace Adventure_Capitalist_Calculator.ItemComposite
         public Bank bank { get; set; }
         public OilCompany oilCompany { get; set; }
 
-        public void setLemonStandLevel(double inLevel) { lemonStand.level = inLevel; setGlobalAchievmentModifier(); }
-        public void setNewspaperLevel(double inLevel) { newspaper.level = inLevel; setGlobalAchievmentModifier(); }
-        public void setCarWashLevel(double inLevel) { carWash.level = inLevel; setGlobalAchievmentModifier(); }
-        public void setPizzaDeliveryLevel(double inLevel) { pizzaDelivery.level = inLevel; setGlobalAchievmentModifier(); }
-        public void setDonutShopLevel(double inLevel) { donutShop.level = inLevel; setGlobalAchievmentModifier(); }
-        public void setShrimpBoatLevel(double inLevel) { shrimpBoat.level = inLevel; setGlobalAchievmentModifier(); }
-        public void setHockeyTeamLevel(double inLevel) { hockeyTeam.level = inLevel; setGlobalAchievmentModifier(); }
-        public void setMovieStudioLevel(double inLevel) { movieStudio.level = inLevel; setGlobalAchievmentModifier(); }
-        public void setBankLevel(double inLevel) { bank.level = inLevel; setGlobalAchievmentModifier(); }
-        public void setOilCompanyLevel(double inLevel) { oilCompany.level = inLevel; setGlobalAchievmentModifier(); }
+        public void setLemonStandLevel(double inLevel) { setItemLevel(lemonStand, inLevel); }
+        public void setNewspaperLevel(double inLevel) { setItemLevel(newspaper, inLevel); }
+        public void setCarWashLevel(double inLevel) { setItemLevel(carWash, inLevel); }
+        public void setPizzaDeliveryLevel(double inLevel) { setItemLevel(pizzaDelivery, inLevel); }
+        public void setDonutShopLevel(double inLevel) { setItemLevel(donutShop, inLevel); }
+        public void setShrimpBoatLevel(double inLevel) { setItemLevel(shrimpBoat, inLevel); }
+        public void setHockeyTeamLevel(double inLevel) { setItemLevel(hockeyTeam, inLevel); }
+        public void setMovieStudioLevel(double inLevel) { setItemLevel(movieStudio, inLevel); }
+        public void setBankLevel(double inLevel) { setItemLevel(bank, inLevel); }
+        public void setOilCompanyLevel(double inLevel) { setItemLevel(oilCompany, inLevel); }
         public void setItemLevel(ItemBase inItem, double inLevel)
         {
             totalBuyEfficiencyHistory.Add(getTotalBuyEfficiency());
             inItem.level = inLevel;
-            setGlobalAchievmentModifier(); 
+            setGlobalAchievmentModifier();
+
+            double newsPaperAdditionalRevenuePerSecond = allitems.Sum(i => i.getRevenueDeltaInRevenueBetweenNewspaperAndWithout());
+            newspaper.newspaperAdditionalRevenuePerSecond = newsPaperAdditionalRevenuePerSecond;
+
             totalMoneySpend += inItem.getBuyCost();
             levelUpPath.Append(inLevel + "\t" + inItem.GetType().Name + "\t" + getTotalRevenuePerSecond() + "\t" + totalMoneySpend + "\t" + getTotalBuyEfficiency() + "\r\n");
         }
@@ -73,7 +54,7 @@ namespace Adventure_Capitalist_Calculator.ItemComposite
 
         public double totalMoneySpend { get; set; }
 
-        private void setGlobalAchievmentModifier()
+        protected override void setGlobalAchievmentModifier()
         {
             double resultRevenue = 1;
             double resultSpeed = 1;
@@ -140,22 +121,22 @@ namespace Adventure_Capitalist_Calculator.ItemComposite
             return allitems.Sum(o => o.getBuyEfficiency());
         }
 
-        public ItemContainer()
+        public EarthItemContainer()
         {
             angelsCount = 0;
             advertismentBonus = 2;
             cashUpgradesLevel = 1;
             totalMoneySpend = 0;
-            lemonStand = new LemonStand();
-            newspaper = new Newspaper();
-            carWash = new CarWash();
-            pizzaDelivery = new PizzaDelivery();
-            donutShop = new DonutShop();
-            shrimpBoat = new ShrimpBoat();
-            hockeyTeam = new HockeyTeam();
-            movieStudio = new MovieStudio();
-            bank = new Bank();
-            oilCompany = new OilCompany();
+            lemonStand = new LemonStand(this);
+            newspaper = new Newspaper(this);
+            carWash = new CarWash(this);
+            pizzaDelivery = new PizzaDelivery(this);
+            donutShop = new DonutShop(this);
+            shrimpBoat = new ShrimpBoat(this);
+            hockeyTeam = new HockeyTeam(this);
+            movieStudio = new MovieStudio(this);
+            bank = new Bank(this);
+            oilCompany = new OilCompany(this);
 
             allitems.Add(lemonStand);
             allitems.Add(newspaper);
@@ -175,7 +156,7 @@ namespace Adventure_Capitalist_Calculator.ItemComposite
             set
             {
                 allitems.ForEach(i => i.cashUpgradeModifier = 1);
-                allitems.ForEach(i => i.angelsPercent = 2);
+                angelsPercent = 2;
 
                 if (value >= 2) lemonStand.cashUpgradeModifier *= 3;
                 if (value >= 3) newspaper.cashUpgradeModifier *= 3;
@@ -201,7 +182,7 @@ namespace Adventure_Capitalist_Calculator.ItemComposite
                 if (value >= 22) oilCompany.cashUpgradeModifier *= 3;
                 if (value >= 23) allitems.ForEach(i => i.cashUpgradeModifier *= 3);
 
-                if (value >= 24) allitems.ForEach(i => i.angelsPercent += 1); //$100 Quadrillion
+                if (value >= 24) angelsPercent += 1; //$100 Quadrillion
 
                 if (value >= 25) lemonStand.cashUpgradeModifier *= 3;
                 if (value >= 26) newspaper.cashUpgradeModifier *= 3;
@@ -215,7 +196,7 @@ namespace Adventure_Capitalist_Calculator.ItemComposite
                 if (value >= 34) oilCompany.cashUpgradeModifier *= 3;
                 if (value >= 35) allitems.ForEach(i => i.cashUpgradeModifier *= 3);
 
-                if (value >= 36) allitems.ForEach(i => i.angelsPercent += 1); //$1 Sextillion
+                if (value >= 36) angelsPercent += 1; //$1 Sextillion
 
                 if (value >= 37) lemonStand.cashUpgradeModifier *= 3;
                 if (value >= 38) newspaper.cashUpgradeModifier *= 3;
@@ -229,7 +210,7 @@ namespace Adventure_Capitalist_Calculator.ItemComposite
                 if (value >= 46) oilCompany.cashUpgradeModifier *= 3;
                 if (value >= 47) allitems.ForEach(i => i.cashUpgradeModifier *= 3);
 
-                if (value >= 48) allitems.ForEach(i => i.angelsPercent += 2); //$10 Septillion
+                if (value >= 48) angelsPercent += 2; //$10 Septillion
 
                 if (value >= 49) lemonStand.cashUpgradeModifier *= 7;
                 if (value >= 50) newspaper.cashUpgradeModifier *= 7;

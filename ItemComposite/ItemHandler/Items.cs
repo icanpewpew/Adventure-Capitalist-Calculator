@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Adventure_Capitalist_Calculator.ItemComposite.Container;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,12 +8,174 @@ using System.Threading.Tasks;
 namespace Adventure_Capitalist_Calculator.ItemComposite.ItemHandler
 {
 
-    class LemonStand : ItemBase
+    class MoonShoe : ItemBase
     {
-        public LemonStand()
+        public MoonShoe(GlobalStats inGlobalStats) 
+            : base(inGlobalStats) 
         {
             level = 1;
-            
+            InitialCost = 4.762;
+            CalcCoefficient = 1.05;
+            InitialTime = 2;
+            InitialRevenue = 1;
+        }
+        protected override double getAchievementModifier(bool getRevenue)
+        {
+            return 1;
+        }
+    }
+    class GravityBooth : ItemBase
+    {
+        public GravityBooth(GlobalStats inGlobalStats)
+            : base(inGlobalStats) 
+        {
+            level = 1;
+            InitialCost = 105;
+            CalcCoefficient = 1.21;
+            InitialTime = 7;
+            InitialRevenue = 21;
+        }
+        protected override double getAchievementModifier(bool getRevenue)
+        {
+            return 1;
+        }
+    }
+    class PaydayClone : ItemBase
+    {
+        public PaydayClone(GlobalStats inGlobalStats)
+            : base(inGlobalStats) 
+        {
+            level = 1;
+            InitialCost = 2929;
+            CalcCoefficient = 1.07;
+            InitialTime = 28;
+            InitialRevenue = 2000;
+        }
+        protected override double getAchievementModifier(bool getRevenue)
+        {
+            return 1;
+        }
+    }
+    class MoonExpress : ItemBase
+    {
+        public MoonExpress(GlobalStats inGlobalStats)
+            : base(inGlobalStats) 
+        {
+            level = 1;
+            InitialCost = 42525;
+            CalcCoefficient = 1.19;
+            InitialTime = 2;
+            InitialRevenue = 376;
+        }
+        protected override double getAchievementModifier(bool getRevenue)
+        {
+            return 1;
+        }
+    }
+    class OxygenBar : ItemBase
+    {
+        public OxygenBar(GlobalStats inGlobalStats)
+            : base(inGlobalStats) 
+        {
+            level = 1;
+            InitialCost = 493025;
+            CalcCoefficient = 1.09;
+            InitialTime = 45;
+            InitialRevenue = 99000;
+        }
+        protected override double getAchievementModifier(bool getRevenue)
+        {
+            return 1;
+        }
+    }
+    class Helium3Farm : ItemBase
+    {
+        public Helium3Farm(GlobalStats inGlobalStats)
+            : base(inGlobalStats) 
+        {
+            level = 1;
+            InitialCost = 18753525;
+            CalcCoefficient = 1.15;
+            InitialTime = 180;
+            InitialRevenue = 1980000;
+        }
+        protected override double getAchievementModifier(bool getRevenue)
+        {
+            return 1;
+        }
+    }
+    class CheesMine : ItemBase
+    {
+        public CheesMine(GlobalStats inGlobalStats)
+            : base(inGlobalStats) 
+        {
+            level = 1;
+            InitialCost = 393824025;
+            CalcCoefficient = 1.13;
+            InitialTime = 600;
+            InitialRevenue = 33000000;
+        }
+        protected override double getAchievementModifier(bool getRevenue)
+        {
+            return 1;
+        }
+    }
+    class AmusmentPark : ItemBase
+    {
+        public AmusmentPark(GlobalStats inGlobalStats)
+            : base(inGlobalStats) 
+        {
+            level = 1;
+            InitialCost = 8270000000;
+            CalcCoefficient = 1.17;
+            InitialTime = 3000;
+            InitialRevenue = 1152000000;
+        }
+        protected override double getAchievementModifier(bool getRevenue)
+        {
+            return 1;
+        }
+    }
+    class WerwolfColony : ItemBase
+    {
+        public WerwolfColony(GlobalStats inGlobalStats)
+            : base(inGlobalStats) 
+        {
+            level = 1;
+            InitialCost = 173676000000;
+            CalcCoefficient = 1.11;
+            InitialTime = 14400;
+            InitialRevenue = 11067000000;
+        }
+        protected override double getAchievementModifier(bool getRevenue)
+        {
+            return 1;
+        }
+    }
+    class GigantLaser : ItemBase
+    {
+        public GigantLaser(GlobalStats inGlobalStats)
+            : base(inGlobalStats) 
+        {
+            level = 1;
+            InitialCost = 1000000000000;
+            CalcCoefficient = 1.50;
+            InitialTime = 86400;
+            InitialRevenue = 332640000000;
+        }
+        protected override double getAchievementModifier(bool getRevenue)
+        {
+            return 1;
+        }
+    }
+
+    class LemonStand : ItemBase
+    {
+        public LemonStand(GlobalStats inGlobalStats)
+            : base(inGlobalStats) 
+        {
+            level = 1;
+
             InitialCost = 3.738;
             CalcCoefficient = 1.07;
             InitialTime = 0.6;
@@ -65,8 +228,10 @@ namespace Adventure_Capitalist_Calculator.ItemComposite.ItemHandler
     class Newspaper : ItemBase
     {
         public static double newsPaperLevel { get; set; }
+        public double newspaperAdditionalRevenuePerSecond { get; set; }
 
-        public Newspaper()
+        public Newspaper(GlobalStats inGlobalStats)
+            : base(inGlobalStats) 
         {
             level = 1;
 
@@ -81,11 +246,17 @@ namespace Adventure_Capitalist_Calculator.ItemComposite.ItemHandler
         {
             return getNewspaperModifier(getRevenue);
         }
+
+        public override double getBuyEfficiency()
+        {
+            return getBuyCost() / (getRevenuePerSecond() + newspaperAdditionalRevenuePerSecond);
+        }
     }
 
     class CarWash : ItemBase
     {
-        public CarWash()
+        public CarWash(GlobalStats inGlobalStats)
+            : base(inGlobalStats) 
         {
             level = 1;
 
@@ -133,7 +304,8 @@ namespace Adventure_Capitalist_Calculator.ItemComposite.ItemHandler
 
     class PizzaDelivery : ItemBase
     {
-        public PizzaDelivery()
+        public PizzaDelivery(GlobalStats inGlobalStats)
+            : base(inGlobalStats) 
         {
             level = 1;
 
@@ -181,7 +353,8 @@ namespace Adventure_Capitalist_Calculator.ItemComposite.ItemHandler
 
     class DonutShop : ItemBase
     {
-        public DonutShop()
+        public DonutShop(GlobalStats inGlobalStats)
+            : base(inGlobalStats) 
         {
             level = 1;
 
@@ -229,7 +402,8 @@ namespace Adventure_Capitalist_Calculator.ItemComposite.ItemHandler
 
     class ShrimpBoat : ItemBase
     {
-        public ShrimpBoat()
+        public ShrimpBoat(GlobalStats inGlobalStats)
+            : base(inGlobalStats) 
         {
             level = 1;
 
@@ -277,7 +451,8 @@ namespace Adventure_Capitalist_Calculator.ItemComposite.ItemHandler
 
     class HockeyTeam : ItemBase
     {
-        public HockeyTeam()
+        public HockeyTeam(GlobalStats inGlobalStats)
+            : base(inGlobalStats) 
         {
             level = 1;
 
@@ -325,7 +500,8 @@ namespace Adventure_Capitalist_Calculator.ItemComposite.ItemHandler
 
     class MovieStudio : ItemBase
     {
-        public MovieStudio()
+        public MovieStudio(GlobalStats inGlobalStats)
+            : base(inGlobalStats) 
         {
             level = 1;
 
@@ -373,7 +549,8 @@ namespace Adventure_Capitalist_Calculator.ItemComposite.ItemHandler
 
     class Bank : ItemBase
     {
-        public Bank()
+        public Bank(GlobalStats inGlobalStats)
+            : base(inGlobalStats) 
         {
             level = 1;
 
@@ -421,7 +598,8 @@ namespace Adventure_Capitalist_Calculator.ItemComposite.ItemHandler
 
     class OilCompany : ItemBase
     {
-        public OilCompany()
+        public OilCompany(GlobalStats inGlobalStats)
+            : base(inGlobalStats) 
         {
             level = 1;
 

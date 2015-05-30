@@ -18,7 +18,7 @@ namespace Adventure_Capitalist_Calculator
     public partial class main : Form
     {
         FormState state = new FormState();
-        ItemContainer itemContainer = new ItemContainer();
+        EarthItemContainer itemContainer = new EarthItemContainer();
 
         public main()
         {
@@ -93,9 +93,9 @@ namespace Adventure_Capitalist_Calculator
 
             suggestButton_Click(null, null);
 
-            Reports report = new Reports();
+            //Reports report = new Reports();
             //report.writeTestStrategies();
-            report.writeChooseRandom();
+            //report.writeChooseRandom();
 
         }
 

@@ -40,7 +40,7 @@ namespace Adventure_Capitalist_Calculator
             return current_dir + String.Format(fileName, inReportName);
         }
 
-        public void writeEfficiencyOverLevel(ItemContainer inItemContainer)
+        public void writeEfficiencyOverLevel(EarthItemContainer inItemContainer)
         {
 
             reportContent = new System.IO.StreamWriter(getFilePath(GetCurrentMethod()), false, Encoding.UTF8);
@@ -54,7 +54,7 @@ namespace Adventure_Capitalist_Calculator
             reportContent.Close();
         }
 
-        public void writeAlwaysChooseTheEffItem(ItemContainer inItemContainer)
+        public void writeAlwaysChooseTheEffItem(EarthItemContainer inItemContainer)
         {
             reportContent = new System.IO.StreamWriter(getFilePath(GetCurrentMethod()), false, Encoding.UTF8);
             reportContent.WriteLine("\ttotal level\ttotal revenue per second\ttotal money spend\titem choosed\titem level\titem revenue per second\titem efficiency\titem buy cost");
@@ -83,7 +83,7 @@ namespace Adventure_Capitalist_Calculator
             reportContent.Close();
         }
 
-        public void writeAlwaysChooseTheCheapestItem(ItemContainer inItemContainer)
+        public void writeAlwaysChooseTheCheapestItem(EarthItemContainer inItemContainer)
         {
             reportContent = new System.IO.StreamWriter(getFilePath(GetCurrentMethod()), false, Encoding.UTF8);
             reportContent.WriteLine("\ttotal level\ttotal revenue per second\ttotal money spend\titem choosed\titem level\titem revenue per second\titem efficiency\titem buy cost");
@@ -116,12 +116,12 @@ namespace Adventure_Capitalist_Calculator
 
         public void writeChooseRandom()
         {
-            List<ItemContainer> allRandoms = new List<ItemContainer>();
+            List<EarthItemContainer> allRandoms = new List<EarthItemContainer>();
             int totalContainerCount = 10000;
             int calcToLevel = 10000;
 
             for (int i = 0; i < totalContainerCount; i++)
-                allRandoms.Add(new ItemContainer());
+                allRandoms.Add(new EarthItemContainer());
 
             reportContent = new System.IO.StreamWriter(getFilePath(GetCurrentMethod()), false, Encoding.UTF8);
 
@@ -133,7 +133,7 @@ namespace Adventure_Capitalist_Calculator
             Random random = new Random();
             for (int i = 1; i <= calcToLevel; i++)
             {
-                foreach (ItemContainer curRandom in allRandoms)
+                foreach (EarthItemContainer curRandom in allRandoms)
                 {
                     ItemBase curItem = curRandom.allitems[random.Next(0, curRandom.allitems.Count())];
                     curRandom.setItemLevel(curItem, curItem.level + 1);
@@ -142,7 +142,7 @@ namespace Adventure_Capitalist_Calculator
 
 
             double lowesetAvg = allRandoms.Min(i => i.totalBuyEfficiencyHistory.Average());
-            ItemContainer bestContainer = allRandoms.First(i => i.totalBuyEfficiencyHistory.Average().Equals(lowesetAvg));
+            EarthItemContainer bestContainer = allRandoms.First(i => i.totalBuyEfficiencyHistory.Average().Equals(lowesetAvg));
 
             reportContent.WriteLine(bestContainer.levelUpPath.ToString());
 
@@ -153,9 +153,9 @@ namespace Adventure_Capitalist_Calculator
 
         public void writeTestStrategies()
         {
-            ItemContainer effContainer = new ItemContainer();
-            ItemContainer ceapBuyCostContainer = new ItemContainer();
-            ItemContainer lowestLevelContainer = new ItemContainer();
+            EarthItemContainer effContainer = new EarthItemContainer();
+            EarthItemContainer ceapBuyCostContainer = new EarthItemContainer();
+            EarthItemContainer lowestLevelContainer = new EarthItemContainer();
 
             reportContent = new System.IO.StreamWriter(getFilePath(GetCurrentMethod()), false, Encoding.UTF8);
 
