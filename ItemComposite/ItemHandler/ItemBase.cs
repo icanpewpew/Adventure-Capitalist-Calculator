@@ -24,8 +24,7 @@ namespace Adventure_Capitalist_Calculator.ItemComposite.ItemHandler
         public double newspaperRevenueModifier { get { return getNewspaperRevenueModifier(); } }
         public double newspaperSpeedModifier { get { return getNewspaperSpeedModifier(); } }
 
-        public double GlobalAchievmentRevenueModifier { get; set; }
-        public double GlobalAchievmentSpeedModifier { get; set; }
+
 
         public double cashUpgradeModifier { get; set; }
         
@@ -51,12 +50,12 @@ namespace Adventure_Capitalist_Calculator.ItemComposite.ItemHandler
         private double advertismentBonus { get { return globalStats.advertismentBonus; } }
         private double angelsCount { get { return globalStats.angelsCount; } }
         private double angelsPercent { get { return globalStats.angelsPercent; } }
+        private double GlobalAchievmentRevenueModifier { get { return globalStats.GlobalAchievmentRevenueModifier; } }
+        private double GlobalAchievmentSpeedModifier { get { return globalStats.GlobalAchievmentSpeedModifier; } }
 
         public ItemBase(GlobalStats inGlobalStats) 
         {
             globalStats = inGlobalStats;
-            GlobalAchievmentRevenueModifier = 1;
-            GlobalAchievmentSpeedModifier = 1;
             cashUpgradeModifier = 1;
         }
 
