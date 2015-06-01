@@ -18,7 +18,8 @@ namespace Adventure_Capitalist_Calculator
     public partial class main : Form
     {
         FormState state = new FormState();
-        EarthItemContainer itemContainer = new EarthItemContainer();
+        EarthItemContainer earthItemContainer = new EarthItemContainer();
+        MoonItemContainer moonItemContainer = new MoonItemContainer();
 
         public main()
         {
@@ -55,6 +56,20 @@ namespace Adventure_Capitalist_Calculator
                 state.selectedAngelUpgradesCombo = angelUpgradesCombo.SelectedIndex;
                 state.selectedManagerAngelUpgradeCombo = managerAngelUpgradeCombo.SelectedIndex;
 
+                state.moonShoeState = shoe.Text;
+                state.gravityBoothState = booth.Text;
+                state.paydayCloneState = clone.Text;
+                state.moonExpressState = express.Text;
+                state.oxygenBarState = oxygen.Text;
+                state.helium3FarmState = helium3.Text;
+                state.cheesMineState = cheese.Text;
+                state.amusmentParkState = park.Text;
+                state.werwolfColonyState = werewolf.Text;
+                state.gigantLaserState = laser.Text;
+                state.moonAngelCount = moonAngelCount.Text;
+
+                state.selectedTab = tabControl1.SelectedIndex;
+
                 XmlSerializer ser = new XmlSerializer(typeof(FormState));
                 ser.Serialize(sw, state);
             }
@@ -64,8 +79,7 @@ namespace Adventure_Capitalist_Calculator
         {
             writeConfig();
         }
-
-        
+               
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -91,6 +105,22 @@ namespace Adventure_Capitalist_Calculator
             angelUpgradesCombo.SelectedIndex = state.selectedAngelUpgradesCombo;
             managerAngelUpgradeCombo.SelectedIndex = state.selectedManagerAngelUpgradeCombo;
 
+
+            shoe.Text = state.moonShoeState ?? "1";
+            booth.Text = state.gravityBoothState ?? "1";
+            clone.Text = state.paydayCloneState ?? "1";
+            express.Text = state.moonExpressState ?? "1";
+            oxygen.Text = state.oxygenBarState ?? "1";
+            helium3.Text = state.helium3FarmState ?? "1";
+            cheese.Text = state.cheesMineState ?? "1";
+            park.Text = state.amusmentParkState ?? "1";
+            werewolf.Text = state.werwolfColonyState ?? "1";
+            laser.Text = state.gigantLaserState ?? "1";
+
+            moonAngelCount.Text = state.moonAngelCount ?? "1";
+
+            tabControl1.SelectedIndex = state.selectedTab;
+
             suggestButton_Click(null, null);
 
             //Reports report = new Reports();
@@ -114,7 +144,7 @@ namespace Adventure_Capitalist_Calculator
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            itemContainer.cashUpgradesLevel = ((KeyValuePair<double, string>)cashUpgradeCombo.SelectedItem).Key;
+            earthItemContainer.cashUpgradesLevel = ((KeyValuePair<double, string>)cashUpgradeCombo.SelectedItem).Key;
             //suggestButton_Click(null, null);
         }
 
@@ -130,7 +160,7 @@ namespace Adventure_Capitalist_Calculator
 
 
         private void write(string inLine) { listBox1.Items.Add(inLine); }
-
+        private void writeMoon(string inLine) { moonListBox.Items.Add(inLine); }
 
 
 
@@ -138,22 +168,22 @@ namespace Adventure_Capitalist_Calculator
         {
             listBox1.Items.Clear();
             
-            itemContainer.setLemonStandLevel(Convert.ToDouble(LemonStandInput.Text));
-            itemContainer.setNewspaperLevel(Convert.ToDouble(NewspaperInput.Text));
-            itemContainer.setCarWashLevel(Convert.ToDouble(CarwashInput.Text));
-            itemContainer.setPizzaDeliveryLevel(Convert.ToDouble(PizzaDeliveryInput.Text));
-            itemContainer.setDonutShopLevel(Convert.ToDouble(DonutShopInput.Text));
-            itemContainer.setShrimpBoatLevel(Convert.ToDouble(ShrimpBoatInput.Text));
-            itemContainer.setHockeyTeamLevel(Convert.ToDouble(HockeyTeamInput.Text));
-            itemContainer.setMovieStudioLevel(Convert.ToDouble(MovieStudioInput.Text));
-            itemContainer.setBankLevel(Convert.ToDouble(BankInput.Text));
-            itemContainer.setOilCompanyLevel(Convert.ToDouble(OilRigInput.Text));
+            earthItemContainer.setLemonStandLevel(Convert.ToDouble(LemonStandInput.Text));
+            earthItemContainer.setNewspaperLevel(Convert.ToDouble(NewspaperInput.Text));
+            earthItemContainer.setCarWashLevel(Convert.ToDouble(CarwashInput.Text));
+            earthItemContainer.setPizzaDeliveryLevel(Convert.ToDouble(PizzaDeliveryInput.Text));
+            earthItemContainer.setDonutShopLevel(Convert.ToDouble(DonutShopInput.Text));
+            earthItemContainer.setShrimpBoatLevel(Convert.ToDouble(ShrimpBoatInput.Text));
+            earthItemContainer.setHockeyTeamLevel(Convert.ToDouble(HockeyTeamInput.Text));
+            earthItemContainer.setMovieStudioLevel(Convert.ToDouble(MovieStudioInput.Text));
+            earthItemContainer.setBankLevel(Convert.ToDouble(BankInput.Text));
+            earthItemContainer.setOilCompanyLevel(Convert.ToDouble(OilRigInput.Text));
 
-            write(itemContainer.getItemWithLowestEfficency().GetType().Name);
+            write(earthItemContainer.getItemWithLowestEfficency().GetType().Name);
             write("");
             write("");
             write("");
-            itemContainer.allitems.OrderBy(i => i.getBuyEfficiency()).ToList().ForEach(i => write(i.GetType().Name.PadLeft(20) + " " + i.getBuyEfficiency().ToString("G3").PadLeft(10)));
+            earthItemContainer.allitems.OrderBy(i => i.getBuyEfficiency()).ToList().ForEach(i => write(i.GetType().Name.PadLeft(20) + " " + i.getBuyEfficiency().ToString("G3").PadLeft(10)));
 
 
 
@@ -166,7 +196,7 @@ namespace Adventure_Capitalist_Calculator
 
         private void button2_Click(object sender, EventArgs e)
         {
-            itemContainer.setItemLevel(itemContainer.getItemWithLowestEfficency(), itemContainer.getItemWithLowestEfficency().level + 1);
+            earthItemContainer.setItemLevel(earthItemContainer.getItemWithLowestEfficency(), earthItemContainer.getItemWithLowestEfficency().level + 1);
 
             setInputBoxesWithContainer();
 
@@ -175,7 +205,7 @@ namespace Adventure_Capitalist_Calculator
 
         private void button1_Click(object sender, EventArgs e)
         {
-            itemContainer.setItemLevel(itemContainer.getItemWithLowestEfficency(), itemContainer.getItemWithLowestEfficency().level + 10);
+            earthItemContainer.setItemLevel(earthItemContainer.getItemWithLowestEfficency(), earthItemContainer.getItemWithLowestEfficency().level + 10);
             
             setInputBoxesWithContainer();
             
@@ -185,18 +215,72 @@ namespace Adventure_Capitalist_Calculator
 
         private void setInputBoxesWithContainer()
         {
-            LemonStandInput.Text = itemContainer.lemonStand.level.ToString();
-            NewspaperInput.Text = itemContainer.newspaper.level.ToString();
-            CarwashInput.Text = itemContainer.carWash.level.ToString();
-            PizzaDeliveryInput.Text = itemContainer.pizzaDelivery.level.ToString();
-            DonutShopInput.Text = itemContainer.donutShop.level.ToString();
-            ShrimpBoatInput.Text = itemContainer.shrimpBoat.level.ToString();
-            HockeyTeamInput.Text = itemContainer.hockeyTeam.level.ToString();
-            MovieStudioInput.Text = itemContainer.movieStudio.level.ToString();
-            BankInput.Text = itemContainer.bank.level.ToString();
-            OilRigInput.Text = itemContainer.oilCompany.level.ToString();
+            LemonStandInput.Text = earthItemContainer.lemonStand.level.ToString();
+            NewspaperInput.Text = earthItemContainer.newspaper.level.ToString();
+            CarwashInput.Text = earthItemContainer.carWash.level.ToString();
+            PizzaDeliveryInput.Text = earthItemContainer.pizzaDelivery.level.ToString();
+            DonutShopInput.Text = earthItemContainer.donutShop.level.ToString();
+            ShrimpBoatInput.Text = earthItemContainer.shrimpBoat.level.ToString();
+            HockeyTeamInput.Text = earthItemContainer.hockeyTeam.level.ToString();
+            MovieStudioInput.Text = earthItemContainer.movieStudio.level.ToString();
+            BankInput.Text = earthItemContainer.bank.level.ToString();
+            OilRigInput.Text = earthItemContainer.oilCompany.level.ToString();
         }
 
+        private void moonSuggest_Click(object sender, EventArgs e)
+        {
+            moonListBox.Items.Clear();
+
+            moonItemContainer.setMoonShoeLevel(Convert.ToDouble(shoe.Text));
+            moonItemContainer.setGravityBoothLevel(Convert.ToDouble(booth.Text));
+            moonItemContainer.setPaydayCloneLevel(Convert.ToDouble(clone.Text));
+            moonItemContainer.setMoonExpressLevel(Convert.ToDouble(express.Text));
+            moonItemContainer.setOxygenBarLevel(Convert.ToDouble(oxygen.Text));
+            moonItemContainer.setHelium3FarmLevel(Convert.ToDouble(helium3.Text));
+            moonItemContainer.setCheesMineLevel(Convert.ToDouble(cheese.Text));
+            moonItemContainer.setAmusmentParkLevel(Convert.ToDouble(park.Text));
+            moonItemContainer.setWerwolfColonyLevel(Convert.ToDouble(werewolf.Text));
+            moonItemContainer.setGigantLaserLevel(Convert.ToDouble(laser.Text));
+
+            writeMoon(moonItemContainer.getItemWithLowestEfficency().GetType().Name);
+            writeMoon("");
+            writeMoon("");
+            writeMoon("");
+            moonItemContainer.allitems.OrderBy(i => i.getBuyEfficiency()).ToList().ForEach(i => writeMoon(i.GetType().Name.PadLeft(20) + " " + i.getBuyEfficiency().ToString("G3").PadLeft(10)));
+
+        }
+
+        private void moonFollowed1_Click(object sender, EventArgs e)
+        {
+            moonItemContainer.setItemLevel(moonItemContainer.getItemWithLowestEfficency(), moonItemContainer.getItemWithLowestEfficency().level + 1);
+
+            setInputBoxesWithContainerMoon();
+
+            moonSuggest_Click(null, null);
+        }
+
+        private void moonFollowed10_Click(object sender, EventArgs e)
+        {
+            moonItemContainer.setItemLevel(moonItemContainer.getItemWithLowestEfficency(), moonItemContainer.getItemWithLowestEfficency().level + 1);
+
+            setInputBoxesWithContainerMoon();
+
+            moonSuggest_Click(null, null);
+        }
+
+        private void setInputBoxesWithContainerMoon()
+        {
+            shoe.Text = moonItemContainer.moonShoe.level.ToString();
+            booth.Text = moonItemContainer.gravityBooth.level.ToString();
+            clone.Text = moonItemContainer.paydayClone.level.ToString();
+            express.Text = moonItemContainer.moonExpress.level.ToString();
+            oxygen.Text = moonItemContainer.oxygenBar.level.ToString();
+            helium3.Text = moonItemContainer.helium3Farm.level.ToString();
+            cheese.Text = moonItemContainer.cheesMine.level.ToString();
+            park.Text = moonItemContainer.amusmentPark.level.ToString();
+            werewolf.Text = moonItemContainer.werwolfColony.level.ToString();
+            laser.Text = moonItemContainer.gigantLaser.level.ToString();
+        }
 
     }
 }

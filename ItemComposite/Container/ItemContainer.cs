@@ -97,19 +97,5 @@ namespace Adventure_Capitalist_Calculator.ItemComposite.Container
         {
             return allitems.Sum(o => o.getBuyEfficiency());
         }
-
-        /*
-        MoonShoe
-        GravityBooth
-        PaydayClone
-        MoonExpress
-        OxygenBar
-        Helium3Farm
-        CheesMine
-        AmusmentPark
-        WerwolfColony
-        GigantLaser
-        */
-        
     }
 }

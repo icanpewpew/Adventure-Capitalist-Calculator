@@ -32,15 +32,6 @@ namespace Adventure_Capitalist_Calculator.ItemComposite
         public void setBankLevel(double inLevel) { setItemLevel(bank, inLevel); }
         public void setOilCompanyLevel(double inLevel) { setItemLevel(oilCompany, inLevel); }
 
-
-        
-
-
-
-
-
-
-
         public EarthItemContainer()
         {
             lemonStand = new LemonStand(this);
