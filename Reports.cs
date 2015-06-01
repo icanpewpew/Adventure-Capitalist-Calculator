@@ -1,4 +1,5 @@
 ﻿using Adventure_Capitalist_Calculator.ItemComposite;
+using Adventure_Capitalist_Calculator.ItemComposite.Container;
 using Adventure_Capitalist_Calculator.ItemComposite.ItemHandler;
 using System;
 using System.Collections.Generic;
@@ -83,7 +84,7 @@ namespace Adventure_Capitalist_Calculator
             reportContent.Close();
         }
 
-        public void writeAlwaysChooseTheCheapestItem(EarthItemContainer inItemContainer)
+        public void writeAlwaysChooseTheCheapestItem(ItemContainer inItemContainer)
         {
             reportContent = new System.IO.StreamWriter(getFilePath(GetCurrentMethod()), false, Encoding.UTF8);
             reportContent.WriteLine("\ttotal level\ttotal revenue per second\ttotal money spend\titem choosed\titem level\titem revenue per second\titem efficiency\titem buy cost");
@@ -110,6 +111,33 @@ namespace Adventure_Capitalist_Calculator
                 totalMoneySpend += lowest.getBuyCost();
                 inItemContainer.setItemLevel(lowest, lowest.level + 1);
             }
+
+            reportContent.Close();
+        }
+
+        public void writeLevelUpAllAtTheSameSpeedMoon()
+        {
+            MoonItemContainer itemContainer = new MoonItemContainer();
+
+            reportContent = new System.IO.StreamWriter(getFilePath(GetCurrentMethod()), false, Encoding.UTF8);
+            reportContent.Write("level");
+            itemContainer.allitems.ForEach(o => reportContent.Write("\t" + o.GetType().Name));
+
+            reportContent.WriteLine();
+
+
+            for (int i = 1; i < 10000; i++)
+            {
+
+                itemContainer.allitems.ForEach(o => itemContainer.setItemLevel(o, i));
+
+                StringBuilder line = new StringBuilder();
+                line.Append(i);
+                itemContainer.allitems.ForEach(o => line.Append("\t" + o.getBuyEfficiency().ToString()));
+
+                reportContent.WriteLine(line.ToString());
+            }
+
 
             reportContent.Close();
         }

@@ -16,7 +16,7 @@ namespace Adventure_Capitalist_Calculator.ItemComposite
         public MoonExpress moonExpress { get; set; }
         public OxygenBar oxygenBar { get; set; }
         public Helium3Farm helium3Farm { get; set; }
-        public CheesMine cheesMine { get; set; }
+        public CheeseMine cheesMine { get; set; }
         public AmusmentPark amusmentPark { get; set; }
         public WerwolfColony werwolfColony { get; set; }
         public GigantLaser gigantLaser { get; set; }
@@ -40,7 +40,7 @@ namespace Adventure_Capitalist_Calculator.ItemComposite
             moonExpress = new MoonExpress(this);
             oxygenBar = new OxygenBar(this);
             helium3Farm = new Helium3Farm(this);
-            cheesMine = new CheesMine(this);
+            cheesMine = new CheeseMine(this);
             amusmentPark = new AmusmentPark(this);
             werwolfColony = new WerwolfColony(this);
             gigantLaser = new GigantLaser(this);

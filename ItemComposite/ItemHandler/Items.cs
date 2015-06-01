@@ -14,7 +14,7 @@ namespace Adventure_Capitalist_Calculator.ItemComposite.ItemHandler
             : base(inGlobalStats) 
         {
             level = 1;
-            InitialCost = 4.762;
+            InitialCost = 5;
             CalcCoefficient = 1.05;
             InitialTime = 2;
             InitialRevenue = 1;
@@ -247,9 +247,9 @@ namespace Adventure_Capitalist_Calculator.ItemComposite.ItemHandler
             return result;
         }
     }
-    class CheesMine : ItemBase
+    class CheeseMine : ItemBase
     {
-        public CheesMine(GlobalStats inGlobalStats)
+        public CheeseMine(GlobalStats inGlobalStats)
             : base(inGlobalStats) 
         {
             level = 1;

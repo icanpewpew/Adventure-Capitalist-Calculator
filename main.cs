@@ -123,9 +123,7 @@ namespace Adventure_Capitalist_Calculator
 
             suggestButton_Click(null, null);
 
-            //Reports report = new Reports();
-            //report.writeTestStrategies();
-            //report.writeChooseRandom();
+
 
         }
 
@@ -241,12 +239,24 @@ namespace Adventure_Capitalist_Calculator
             moonItemContainer.setAmusmentParkLevel(Convert.ToDouble(park.Text));
             moonItemContainer.setWerwolfColonyLevel(Convert.ToDouble(werewolf.Text));
             moonItemContainer.setGigantLaserLevel(Convert.ToDouble(laser.Text));
+            moonItemContainer.angelsCount = Convert.ToDouble(moonAngelCount.Text);
 
             writeMoon(moonItemContainer.getItemWithLowestEfficency().GetType().Name);
             writeMoon("");
             writeMoon("");
             writeMoon("");
             moonItemContainer.allitems.OrderBy(i => i.getBuyEfficiency()).ToList().ForEach(i => writeMoon(i.GetType().Name.PadLeft(20) + " " + i.getBuyEfficiency().ToString("G3").PadLeft(10)));
+
+            moonItemContainer.allitems.ForEach(o => writeMoon(o.getBuyCost().ToString()));
+            writeMoon("");
+            writeMoon("");
+            writeMoon("");
+            moonItemContainer.allitems.ForEach(o => writeMoon(o.getCurrentRevenue().ToString()));
+
+
+            //Reports report = new Reports();
+            //report.writeLevelUpAllAtTheSameSpeedMoon();
+
 
         }
 
@@ -261,7 +271,7 @@ namespace Adventure_Capitalist_Calculator
 
         private void moonFollowed10_Click(object sender, EventArgs e)
         {
-            moonItemContainer.setItemLevel(moonItemContainer.getItemWithLowestEfficency(), moonItemContainer.getItemWithLowestEfficency().level + 1);
+            moonItemContainer.setItemLevel(moonItemContainer.getItemWithLowestEfficency(), moonItemContainer.getItemWithLowestEfficency().level + 10);
 
             setInputBoxesWithContainerMoon();
 
